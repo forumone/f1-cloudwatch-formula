@@ -1,0 +1,7 @@
+{% if pillar.client is defined %}
+{% set project = pillar.client %}
+{% else %}
+{% set project = pillar.project %}
+{% endif %}
+
+{% set newrelic_license = salt['cmd.shell']('aws --region us-east-2 ssm get-parameter --name "/forumone/"' + project + '"/newrelic/license" --with-decryption | jq -r .Parameter.Value') %}
