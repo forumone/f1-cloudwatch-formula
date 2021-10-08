@@ -2,6 +2,7 @@
 
 include:
   - f1newrelic.repo
+  - f1nrewrelic.infra
 
 newrelic_pkg:
   pkg.installed:
