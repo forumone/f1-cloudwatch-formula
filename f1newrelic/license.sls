@@ -1,4 +1,4 @@
-{% from "newrelic/map.jinja" import project, newrelic_license with context %}
+{% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
 
 /srv/salt/newrelic.license.ini:
   file.managed
