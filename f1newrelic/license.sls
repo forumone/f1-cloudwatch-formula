@@ -6,4 +6,4 @@
     - user: root
     - mode: 0660
     - content: |
-        newrelic.license = "{{ newrelic_license }}"
+        newrelic.license = {{ newrelic_license }}
