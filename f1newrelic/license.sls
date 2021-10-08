@@ -5,5 +5,5 @@
     - name: /srv/salt/newrelic.license.ini
     - user: root
     - mode: 0660
-    - content: |
+    - contents: |
         newrelic.license = "{{ newrelic_license }}"
