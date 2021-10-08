@@ -14,3 +14,9 @@ newrelic_infra_install:
     - mode: 0640
     - contents: |
         license_key: {{ newrelic_license }}
+
+newrelic-infra:
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/newrelic-infra.yml
