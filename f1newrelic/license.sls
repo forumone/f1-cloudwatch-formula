@@ -1,7 +1,7 @@
 {% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
 
 /srv/salt/newrelic.license.ini:
-  file.managed
+  file.managed:
     - name: /srv/salt/newrelic.license.ini
     - user: root
     - mode: 0660
