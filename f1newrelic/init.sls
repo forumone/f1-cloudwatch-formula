@@ -1,9 +1,7 @@
 {% from "f1newrelic/map.jinja" import project with context %}
 
-newlic_repo:
-  pkg.installed:
-    - sources:
-      - newrelic-repo: https://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
+include:
+  - f1newrelic.repo
 
 newrelic_pkg:
   pkg.installed:
@@ -28,7 +26,7 @@ newrelic_key:
     - mode: 644
     - source: salt://newrelic.license.ini
 
-newrelic_install:
+newrelic_apm_install:
   cmd.run:
     - name: newrelic-install install
     - env:
@@ -42,7 +40,7 @@ newrelic_nginx:
     - onlyif:
       - test -e /usr/sbin/nginx
     - watch:
-      - newrelic_install
+      - newrelic_apm_install
 
 newrelic_fpm:
   service.running:
@@ -50,4 +48,4 @@ newrelic_fpm:
     - onlyif:
       - test -e /sbin/php-fpm
     - watch:
-      - newrelic_install
+      - newrelic_apm_install
