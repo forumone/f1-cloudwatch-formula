@@ -1,6 +1,6 @@
 {% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
 
-newrelic_infra_repo:
+newrelic-infra:
   pkgrepo.managed:
     - humanname: New Relic Infrastructure
     - enabled: True 
@@ -12,7 +12,7 @@ newrelic_infra_install:
   cmd.run:
     - name: yum install newrelic-infra -y
   require:
-    - pkgrepo: newrelic_infra_repo
+    - pkgrepo: newrelic-infra
 
 /etc/newrelic-infra.yml:
   file.managed:
