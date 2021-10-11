@@ -13,14 +13,6 @@ newrelic-infra-repo:
 newrelic-infra:
   pkg.installed
     
-
-
-# newrelic_infra_install:
-#   cmd.run:
-#     - name: yum install newrelic-infra -y
-#   require:
-#     - pkgrepo: newrelic-infra
-
 /etc/newrelic-infra.yml:
   file.managed:
     - name: /etc/newrelic-infra.yml
@@ -35,4 +27,4 @@ newrelic-infra.service:
     - watch:
       - file: /etc/newrelic-infra.yml
   require:
-    - 
+    - pkg: newrelic-infra
