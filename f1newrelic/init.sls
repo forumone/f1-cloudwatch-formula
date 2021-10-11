@@ -1,6 +1,7 @@
 {% from "f1newrelic/map.jinja" import project with context %}
 
 include:
+  - f1newrelic.license
   - f1newrelic.repo
   - f1newrelic.infra
 
