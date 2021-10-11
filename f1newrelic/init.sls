@@ -6,6 +6,7 @@ newrelic-infra:
     - enabled: True 
     - baseurl: https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2/x86_64/
     - gpgcheck: 1
+    - repogpgcheck: 1
     - key_url: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
 
 newrelic_infra_install:
