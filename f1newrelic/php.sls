@@ -1,5 +1,11 @@
 {% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
 
+newrelic_repo:
+  pkg.installed:
+    - sources:
+      - newrelic-repo: https://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
+
+
 newrelic_pkg:
   pkg.installed:
     - name: newrelic-php5
