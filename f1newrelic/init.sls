@@ -23,7 +23,7 @@ newrelic_infra_install:
     - contents: |
         license_key: {{ newrelic_license }}
 
-newrelic-infra-service:
+newrelic-infra.service:
   service.running:
     - enable: True
     - watch:
