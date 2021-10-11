@@ -2,3 +2,5 @@
 
 # To-Do
 Create /etc/newrelic-infra.yml based off salt pillar data to enable additional options.
+
+Add logic to define names for hosts in infrastructure monitoring
