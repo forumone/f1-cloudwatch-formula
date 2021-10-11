@@ -1,8 +1,5 @@
 {% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
 
-include:
-  - f1newrelic.repo
-
 newrelic_infra_install:
   cmd.run:
     - name: yum install newrelic-infra -y
