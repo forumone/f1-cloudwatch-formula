@@ -20,6 +20,9 @@ newrelic-infra:
     - mode: 0640
     - contents: |
         license_key: {{ newrelic_license }}
+    {% if grains.roles is defined and 'web-server' in grains.roles %}
+        # test
+    {% endif %}
 
 newrelic-infra.service:
   service.running:
