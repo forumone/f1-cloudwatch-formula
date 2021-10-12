@@ -1,4 +1,4 @@
-{% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
+{% from "f1newrelic/map.jinja" import infra_agent_name, project, newrelic_license with context %}
 
 newrelic-infra-repo:
   pkgrepo.managed:
@@ -21,7 +21,7 @@ newrelic-infra:
     - contents: |
         license_key: {{ newrelic_license }}
     {% if grains.roles is defined and 'web-server' in grains.roles %}
-        # test
+        display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
     {% endif %}
 
 newrelic-infra.service:
