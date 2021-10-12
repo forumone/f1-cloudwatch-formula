@@ -22,6 +22,8 @@ newrelic-infra:
         license_key: {{ newrelic_license }}
     {% if grains.roles is defined and 'web-server' in grains.roles %}
         display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
+    {% elif grains.roles is defined and 'utility' in grains.roles %}
+        display_name: {{project }}.byf1.dev
     {% endif %}
 
 newrelic-infra.service:
