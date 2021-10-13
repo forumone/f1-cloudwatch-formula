@@ -19,10 +19,10 @@ newrelic_reload_salt_master:
       - newrelic_remote
 
 {% if grains.newrelic is defined and grains.newrelic == True %}
-    - include:
-      - f1newrelic
-  {% if grains.roles is defined and 'web-server' in grains.roles %}
-      - f1newrelic.php
+include:
+  - f1newrelic
+ {% if grains.roles is defined and 'web-server' in grains.roles %}
+  - f1newrelic.php
   {% endif %}
 {% endif %}
 ```
