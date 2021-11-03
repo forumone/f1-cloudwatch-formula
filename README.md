@@ -1,6 +1,7 @@
 # f1-newrelic-formula
 
-Add the following file to your infrastructure repository in `saltstack/salt/salt/`
+Create the following file to your infrastructure repository in `saltstack/salt/salt/newrelic.sls`
+
 
 ```
 newrelic:
@@ -26,6 +27,8 @@ include:
   {% endif %}
 {% endif %}
 ```
+
+Add `salt.newrelic` to your top file to `'*'`
 
 # To-Do
 Create /etc/newrelic-infra.yml based off salt pillar data to enable additional options.
