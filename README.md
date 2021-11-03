@@ -8,6 +8,7 @@ newrelic:
   grains.present:
     - value: True
 
+{% if grains.roles is defined and 'salt-master' in grains.roles %}
 newrelic_remote:
   file.append:
     - name: /etc/salt/master.d/git_remotes.conf
@@ -18,6 +19,7 @@ newrelic_reload_salt_master:
     - name: salt-master
     - watch:
       - newrelic_remote
+{% endif %}
 
 {% if grains.newrelic is defined and grains.newrelic == True %}
 include:
