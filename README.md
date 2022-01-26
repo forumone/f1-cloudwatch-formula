@@ -8,7 +8,7 @@ newrelic:
   grains.present:
     - value: True
 
-{% if grains.roles is defined and 'salt-master' in grains.roles %}
+{% if 'salt-master' in grains.get('roles',[]) %}
 newrelic_remote:
   file.append:
     - name: /etc/salt/master.d/git_remotes.conf
@@ -21,10 +21,10 @@ newrelic_reload_salt_master:
       - newrelic_remote
 {% endif %}
 
-{% if grains.newrelic is defined and grains.newrelic == True %}
+{% if grains.get('newrelic', False) %}
 include:
   - f1newrelic
- {% if grains.roles is defined and 'web-server' in grains.roles %}
+ {% if 'web-server' in grains.get('roles',[]) %}
   - f1newrelic.php
   {% endif %}
 {% endif %}
