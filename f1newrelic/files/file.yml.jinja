@@ -1,0 +1,13 @@
+###############################################################################
+# Log forwarder configuration file                                    #
+# Source: file                                                                #
+# Available customization parameters: attributes, max_line_kb, pattern        #
+###############################################################################
+logs:
+    # PHP FPM Error Logs
+  - name: php-fpm
+    file: /var/log/php-fpm/error.log
+
+    # NGINX Logs
+  - name: nginx
+    file: /var/log/nginx/*.log
