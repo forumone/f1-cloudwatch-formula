@@ -53,6 +53,3 @@ newrelic_fpm:
       - test -e /sbin/php-fpm
     - watch:
       - newrelic_apm_install
-
-include:
-  - logs
