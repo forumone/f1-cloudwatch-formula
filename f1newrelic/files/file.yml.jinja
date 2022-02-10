@@ -15,6 +15,9 @@ logs:
   - name: {{ pillar.project }}
     file: /var/log/nginx/{{ pillar.project }}_www.log
 
+  - name: nginx error
+    file: /var/log/nginx/error.log
+
 {% endif %}
 
 {% endif %}
