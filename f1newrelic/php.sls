@@ -53,3 +53,10 @@ newrelic_fpm:
       - test -e /sbin/php-fpm
     - watch:
       - newrelic_apm_install
+
+/etc/newrelic-infra/logging.d/logging.yml:
+  file.managed:
+    - source: salt://f1newrelic/files/file.yml.jinja
+    - template: jinja
+    - user: root
+    - mode: 0640
