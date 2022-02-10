@@ -31,6 +31,5 @@ newrelic-infra.service:
     - enable: True
     - watch:
       - file: /etc/newrelic-infra.yml
-      - file: /etc/newrelic-infra/logging.d/logging.yml
   require:
     - pkg: newrelic-infra

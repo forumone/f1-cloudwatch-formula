@@ -4,3 +4,9 @@
     - template: jinja
     - user: root
     - mode: 0640
+
+nr-infra.service:
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/newrelic-infra/logging.d/logging.yml
