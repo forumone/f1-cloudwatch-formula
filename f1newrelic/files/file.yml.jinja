@@ -9,8 +9,12 @@ logs:
   - name: php-fpm
     file: /var/log/php-fpm/error.log
 
+{% if 'www' in grains.get('env',[]) %}
+
     # NGINX Logs
-  - name: nginx
-    file: /var/log/nginx/*.log
+  - name: {{ pillar.project }}
+    file: /var/log/nginx/{{ pillar.project }}_www.log
+
+{% endif %}
 
 {% endif %}
