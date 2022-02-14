@@ -1,7 +1,8 @@
 # f1-newrelic-formula
 
-Create the following file to your infrastructure repository in `saltstack/salt/salt/newrelic.sls`
+* Formula requires awscli to be installed on minions
 
+Add the following `newrelic.sls` file to your infrastructure repository in `saltstack/salt/salt/`
 
 ```
 newrelic:
