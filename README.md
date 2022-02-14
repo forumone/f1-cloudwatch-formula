@@ -2,13 +2,14 @@
 
 * Formula requires awscli to be installed on minions
 
-Add the following file to your infrastructure repository in `saltstack/salt/salt/`
+Add the following `newrelic.sls` file to your infrastructure repository in `saltstack/salt/salt/`
 
 ```
 newrelic:
   grains.present:
     - value: True
 
+{% if 'salt-master' in grains.get('roles',[]) %}
 newrelic_remote:
   file.append:
     - name: /etc/salt/master.d/git_remotes.conf
@@ -19,15 +20,18 @@ newrelic_reload_salt_master:
     - name: salt-master
     - watch:
       - newrelic_remote
+{% endif %}
 
-{% if grains.newrelic is defined and grains.newrelic == True %}
+{% if grains.get('newrelic', False) %}
 include:
   - f1newrelic
- {% if grains.roles is defined and 'web-server' in grains.roles %}
+ {% if 'web-server' in grains.get('roles',[]) %}
   - f1newrelic.php
   {% endif %}
 {% endif %}
 ```
+
+Add `salt.newrelic` to your top file to `'*'`
 
 # To-Do
 Create /etc/newrelic-infra.yml based off salt pillar data to enable additional options.
