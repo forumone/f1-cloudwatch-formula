@@ -29,12 +29,6 @@ newrelic_key:
     - mode: 644
     - contents: |
         newrelic.license = "{{ newrelic_license }}"
-        # debug entries
-        newrelic.loglevel = "verbosedebug"
-        newrelic.daemon.loglevel = "verbosedebug"
-        newrelic.logfile = "/var/log/newrelic/php_agent.log"
-        newrelic.daemon.logfile = "/var/log/newrelic/newrelic-daemon.log"
-        newrelic.daemon.auditlog = "/var/log/newrelic/audit.log"
 
 newrelic_apm_install:
   cmd.run:
