@@ -35,8 +35,8 @@ newrelic_apm_install:
     - name: newrelic-install install
     - env:
       - NR_INSTALL_SILENT: '1'
-    - onchanges:
-      - file: newrelic_key
+    - requires:
+      - newrelic_key
 
 newrelic_nginx:
   service.running:
