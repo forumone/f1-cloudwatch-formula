@@ -1,3 +1,5 @@
+{% from "f1newrelic/map.jinja" import infra_agent_name, project, newrelic_license with context %}
+
 license_key: {{ newrelic_license }}
 display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
 
