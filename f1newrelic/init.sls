@@ -16,6 +16,7 @@ newrelic-infra:
 /etc/newrelic-infra.yml:
   file.managed:
     - source: salt://f1newrelic/files/newrelic-infra.yml.jinja
+    - template: jinja
     - name: /etc/newrelic-infra.yml
     - user: root
     - mode: 0640
