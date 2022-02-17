@@ -9,14 +9,12 @@ logs:
 {% for site_name, site in pillar.vhosts.sites.items() -%}
 {% for instance_name, instance in site.instances.items() -%}
 {% if env == instance_name %}
-
-- name: {{ site_name }}_{{ instance_name }}
-  file: /var/log/nginx/{{ site_name }}_{{ instance_name }}.log
-
+  - name: {{ site_name }}_{{ instance_name }}
+    file: /var/log/nginx/{{ site_name }}_{{ instance_name }}.log
 {% endif %}
-{% endfor %}
-{% endfor %}
-{% endfor %}
+{%- endfor %}
+{%- endfor %}
+{%- endfor %}
   - name: nginx error
     file: /var/log/nginx/error.log
 
