@@ -37,6 +37,7 @@ newrelic_apm_install:
       - NR_INSTALL_SILENT: '1'
     - requires:
       - newrelic_key
+    - unless: pgrep newrelic-daemon
 
 newrelic_nginx:
   service.running:
