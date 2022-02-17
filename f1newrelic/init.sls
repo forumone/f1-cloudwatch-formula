@@ -15,16 +15,10 @@ newrelic-infra:
     
 /etc/newrelic-infra.yml:
   file.managed:
+    - source: salt://f1newrelic/files/newrelic-infra.yml.jinja
     - name: /etc/newrelic-infra.yml
     - user: root
     - mode: 0640
-    - contents: |
-        license_key: {{ newrelic_license }}
-    {% if grains.roles is defined and 'utility' in grains.roles %}
-        display_name: {{project }}.byf1.dev
-    {% else %}
-        display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
-    {% endif %}
 
 newrelic-infra.service:
   service.running:
