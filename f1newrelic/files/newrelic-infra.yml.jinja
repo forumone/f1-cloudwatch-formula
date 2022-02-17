@@ -3,7 +3,9 @@
 license_key: {{ newrelic_license }}
 display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
 
-{% for role in grains.roles %}
+{%- if grains.roles is defined %}
 custom_attributes:
+{%- for role in grains.roles %}
   role: {{ role }}
-{% endfor %}
+{% endfor -%}
+{% endif -%}
