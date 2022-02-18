@@ -18,17 +18,19 @@ newrelic_cfg:
     - mode: 644
     - contents: |
         extension=newrelic
+        newrelic.license = "{{ newrelic_license }}"
         newrelic.appname={{ project }}.byf1.dev
         newrelic.logname="/var/log/newrelic/php_agent.log"
+        newrelic.distributed_tracing_enabled = true
 
-newrelic_key:
+{# newrelic_key:
   file.managed:
     - name: /etc/php.d/newrelic.ini
     - user: root
     - group: root
     - mode: 644
     - contents: |
-        newrelic.license = "{{ newrelic_license }}"
+        newrelic.license = "{{ newrelic_license }}" #}
 
 newrelic_apm_install:
   cmd.run:
@@ -36,7 +38,7 @@ newrelic_apm_install:
     - env:
       - NR_INSTALL_SILENT: '1'
     - requires:
-      - newrelic_key
+      - newrelic_cfg
     - unless: pgrep newrelic-daemon
 
 newrelic_nginx:
@@ -46,6 +48,7 @@ newrelic_nginx:
       - test -e /usr/sbin/nginx
     - watch:
       - newrelic_apm_install
+      - newrelic_cfg
 
 newrelic_fpm:
   service.running:
@@ -54,3 +57,4 @@ newrelic_fpm:
       - test -e /sbin/php-fpm
     - watch:
       - newrelic_apm_install
+      - newrelic_cfg
