@@ -17,10 +17,10 @@ newrelic_cfg:
     - group: root
     - mode: 644
     - contents: |
-        extension=newrelic
+        extension = "newrelic.so"
         newrelic.license = "{{ newrelic_license }}"
-        newrelic.appname={{ project }}.byf1.dev
-        newrelic.logname="/var/log/newrelic/php_agent.log"
+        newrelic.appname = {{ project }}.byf1.dev
+        newrelic.logname = "/var/log/newrelic/php_agent.log"
         newrelic.distributed_tracing_enabled = true
 
 {# newrelic_key:
