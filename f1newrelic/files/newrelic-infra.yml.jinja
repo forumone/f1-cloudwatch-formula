@@ -6,6 +6,8 @@ display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
 {% if grains.roles is defined %}
 custom_attributes:
 {%- for role in grains.roles %}
+  {% if role == 'utility' %}
   role: {{ role }}
+  {% endif %}
 {%- endfor %}
 {% endif %}
