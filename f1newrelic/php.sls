@@ -41,6 +41,12 @@ newrelic_apm_install:
       - newrelic_cfg
     - unless: pgrep newrelic-daemon
 
+phpini_no:
+  file.absent:
+    - name: /etc/php.d/newrelic.ini
+    - requires:
+      - newrelic_apm_install
+
 newrelic_nginx:
   service.running:
     - name: nginx
@@ -49,6 +55,7 @@ newrelic_nginx:
     - watch:
       - newrelic_apm_install
       - newrelic_cfg
+      - phpini_no
 
 newrelic_fpm:
   service.running:
@@ -58,3 +65,5 @@ newrelic_fpm:
     - watch:
       - newrelic_apm_install
       - newrelic_cfg
+      - phpini_no
+
