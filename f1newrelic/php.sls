@@ -5,10 +5,11 @@ newrelic_repo:
     - sources:
       - newrelic-repo: https://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
 
-
 newrelic_pkg:
   pkg.installed:
     - name: newrelic-php5
+    - require:
+      - newrelic_repo
 
 newrelic_cfg:
   file.managed:
@@ -19,33 +20,24 @@ newrelic_cfg:
     - contents: |
         extension = "newrelic.so"
         newrelic.license = "{{ newrelic_license }}"
-        newrelic.appname = {{ project }}.byf1.dev
+        newrelic.appname = "{{ project }}.byf1.dev"
         newrelic.logname = "/var/log/newrelic/php_agent.log"
         newrelic.distributed_tracing_enabled = true
-
-{# newrelic_key:
-  file.managed:
-    - name: /etc/php.d/newrelic.ini
-    - user: root
-    - group: root
-    - mode: 644
-    - contents: |
-        newrelic.license = "{{ newrelic_license }}" #}
 
 newrelic_apm_install:
   cmd.run:
     - name: newrelic-install install
     - env:
       - NR_INSTALL_SILENT: '1'
-    - requires:
+    - require:
       - newrelic_cfg
     - unless: pgrep newrelic-daemon
 
 phpini_no:
   file.absent:
     - name: /etc/php.d/newrelic.ini
-    - requires:
-      - newrelic_apm_install
+    - require:
+      - newrelic_apm_install    
 
 newrelic_nginx:
   service.running:
