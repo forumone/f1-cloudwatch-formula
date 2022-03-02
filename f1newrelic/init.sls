@@ -11,7 +11,9 @@ newrelic-infra-repo:
     - gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
 
 newrelic-infra:
-  pkg.installed
+  pkg.installed:
+    - require:
+      - newrelic-infra-repo
     
 /etc/newrelic-infra.yml:
   file.managed:
