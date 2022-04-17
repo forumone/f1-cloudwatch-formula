@@ -11,25 +11,30 @@ newrelic-infra-repo:
     - gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
 
 newrelic-infra:
-  pkg.installed
+  pkg.installed:
+    - require:
+      - newrelic-infra-repo
     
 /etc/newrelic-infra.yml:
   file.managed:
+    - source: salt://f1newrelic/files/newrelic-infra.yml.jinja
+    - template: jinja
     - name: /etc/newrelic-infra.yml
     - user: root
     - mode: 0640
-    - contents: |
-        license_key: {{ newrelic_license }}
-    {% if grains.roles is defined and 'utility' in grains.roles %}
-        display_name: {{project }}.byf1.dev
-    {% else %}
-        display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
-    {% endif %}
+
+/etc/newrelic-infra/logging.d/logging.yml:
+  file.managed:
+    - source: salt://f1newrelic/files/file.yml.jinja
+    - template: jinja
+    - user: root
+    - mode: 0640
 
 newrelic-infra.service:
   service.running:
     - enable: True
     - watch:
       - file: /etc/newrelic-infra.yml
+      - file: /etc/newrelic-infra/logging.d/logging.yml
   require:
     - pkg: newrelic-infra
