@@ -30,6 +30,7 @@ newrelic_apm_install:
     - env:
       - NR_INSTALL_SILENT: '1'
     - require:
+      - newrelic_pkg
       - newrelic_cfg
     - unless: pgrep newrelic-daemon
 
