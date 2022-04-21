@@ -5,7 +5,7 @@
 ###############################################################################
 {% if 'web-server' in grains.get('roles',[]) %}
 logs:
-{% for env in grains.env -%}
+{# {% for env in grains.env -%}
 {% for site_name, site in pillar.vhosts.sites.items() -%}
 {% for instance_name, instance in site.instances.items() -%}
 {% if env == instance_name %}
@@ -14,7 +14,7 @@ logs:
 {% endif %}
 {%- endfor %}
 {%- endfor %}
-{%- endfor %}
+{%- endfor %} #}
   - name: nginx error
     file: /var/log/nginx/error.log
 
