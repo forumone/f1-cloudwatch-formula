@@ -43,7 +43,7 @@ rsyslog.service:
     - enable: True
     - watch:
       - file: /etc/rsyslog.d/newrelic.conf
-    require:
+    - require:
       - file: /etc/rsyslog.d/newrelic.conf
 
 {% endif %}
@@ -54,5 +54,5 @@ newrelic-infra.service:
     - watch:
       - file: /etc/newrelic-infra.yml
       - file: /etc/newrelic-infra/logging.d/logging.yml
-  require:
-    - pkg: newrelic-infra
+    - require:
+      - pkg: newrelic-infra
