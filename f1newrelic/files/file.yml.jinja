@@ -3,7 +3,7 @@
 # Source: file                                                                #
 # Available customization parameters: attributes, max_line_kb, pattern        #
 ###############################################################################
-{% if 'web-server' in grains.get('roles',[]) %}
+{% if 'www' in grains.get('env',[]) %}
 logs:
 {# {% for env in grains.env -%}
 {% for site_name, site in pillar.vhosts.sites.items() -%}
@@ -15,6 +15,9 @@ logs:
 {%- endfor %}
 {%- endfor %}
 {%- endfor %} #}
+  - name: cms_logs
+    file: /var/log/cms.log
+
   - name: nginx error
     file: /var/log/nginx/error.log
 

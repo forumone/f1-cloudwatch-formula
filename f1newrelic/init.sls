@@ -30,6 +30,24 @@ newrelic-infra:
     - user: root
     - mode: 0640
 
+{% if 'www' in grains.get(env, []) %}
+/etc/rsyslog.d/newrelic.conf:
+  file.managed:
+    - user: root
+    - mode: 0640
+    - contents: |
+        local1.* /var/log/cms.log
+
+rsyslog.service:
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/rsyslog.d/newrelic.conf
+    require:
+      - file: /etc/rsyslog.d/newrelic.conf
+
+{% endif %}
+
 newrelic-infra.service:
   service.running:
     - enable: True
