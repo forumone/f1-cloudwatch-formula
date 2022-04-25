@@ -30,7 +30,7 @@ newrelic-infra:
     - user: root
     - mode: 0640
 
-{% if 'www' in grains.get(env, []) %}
+{% if 'www' in grains.get('env', []) %}
 /etc/rsyslog.d/newrelic.conf:
   file.managed:
     - user: root
