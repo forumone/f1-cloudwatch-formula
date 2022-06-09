@@ -1,3 +1,4 @@
+{% if 'web-server' in grains.get('roles',[]) %}
 {% from "f1newrelic/map.jinja" import project, newrelic_license with context %}
 
 newrelic_repo:
@@ -60,3 +61,4 @@ newrelic_fpm:
       - newrelic_cfg
       - phpini_no
 
+{% endif %}
