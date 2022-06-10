@@ -22,6 +22,10 @@ newrelic-infra:
     - name: /etc/newrelic-infra.yml
     - user: root
     - mode: 0640
+    - context:
+      infra_agent_name: {{ infra_agent_name }}
+      newrelic_license: {{ newrelic_license }}
+      project:  {{ project }}
 
 /etc/newrelic-infra/logging.d/logging.yml:
   file.managed:
