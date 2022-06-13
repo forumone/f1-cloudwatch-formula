@@ -1,16 +1,8 @@
-{% from "f1newrelic/map.jinja" import infra_agent_name, project, newrelic_license with context %}
-
 license_key: {{ newrelic_license }}
 display_name: {{ project }}.byf1.dev ({{ infra_agent_name }})
-
-{% if grains.roles is defined %}
+{% if 'utility' in roles %}
 custom_attributes:
-{%- for role in grains.roles %}
-  {% if role == 'utility' %}
-  role: {{ role }}
-  {% endif %}
-{%- endfor %}
-{% endif %}
+  role: utility
+{%- endif %}
 
-# Disable sampling NFS
 metrics_nfs_sample_rate: -1
