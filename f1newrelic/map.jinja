@@ -4,6 +4,6 @@
 {% set project = pillar.project %}
 {% endif %}
 
-{% set newrelic_license = salt['cmd.shell']('aws --region us-east-2 ssm get-parameter --name "/forumone/"' + project + '"/newrelic/license" --with-decryption | jq -r .Parameter.Value') %}
+{% set newrelic_license = salt['cmd.shell']('aws --region us-east-2 ssm get-parameter --name "/forumone/"' + project + '"/newrelic/license" --with-decryption --output text --query Parameter.Value') %}
 
-{% set infra_agent_name = salt['cmd.shell']('AWS_INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id); REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region); INSTANCE_NAME=$(aws ec2 describe-tags --region ${REGION} --filters "Name=resource-id,Values=${AWS_INSTANCE_ID}" "Name=key,Values=Name" --output text | cut -f5); echo ${INSTANCE_NAME}-${AWS_INSTANCE_ID}') %}
+{% set infra_agent_name = salt['cmd.shell']('AWS_INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id); REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | cut -d \'"\' -f 4); INSTANCE_NAME=$(aws ec2 describe-tags --region ${REGION} --filters "Name=resource-id,Values=${AWS_INSTANCE_ID}" "Name=key,Values=Name" --output text | cut -f5); echo ${INSTANCE_NAME}-${AWS_INSTANCE_ID}') %}
