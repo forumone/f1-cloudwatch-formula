@@ -43,3 +43,6 @@ newrelic-infra.service:
       - file: /etc/newrelic-infra/logging.d/logging.yml
     - require:
       - pkg: newrelic-infra
+
+jq:
+  pkg.installed
