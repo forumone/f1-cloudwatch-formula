@@ -24,6 +24,7 @@ newrelic_cfg:
         newrelic.appname = "{{ project }}.byf1.dev"
         newrelic.logname = "/var/log/newrelic/php_agent.log"
         newrelic.distributed_tracing_enabled = true
+        newrelic.custom_events.max_samples_stored = 10000
 
 newrelic_apm_install:
   cmd.run:
