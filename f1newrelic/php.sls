@@ -60,6 +60,6 @@ newrelic_fpm:
     - watch:
       - newrelic_apm_install
       - newrelic_cfg
-      - phpini_no
+#      - phpini_no
 
 {% endif %}
