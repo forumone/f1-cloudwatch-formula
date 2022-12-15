@@ -50,7 +50,7 @@ newrelic_nginx:
     - watch:
       - newrelic_apm_install
       - newrelic_cfg
-      - phpini_no
+#      - phpini_no
 
 newrelic_fpm:
   service.running:
