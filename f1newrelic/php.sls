@@ -23,6 +23,7 @@ newrelic_cfg:
         newrelic.license = "{{ newrelic_license }}"
         newrelic.appname = "{{ project }}.byf1.dev"
         newrelic.logname = "/var/log/newrelic/php_agent.log"
+        newrelic.loglevel = "debug"
         newrelic.distributed_tracing_enabled = true
         newrelic.custom_events.max_samples_stored = 10000
 
