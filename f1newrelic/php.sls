@@ -25,6 +25,7 @@ newrelic_cfg:
         newrelic.logname = "/var/log/newrelic/php_agent.log"
         newrelic.distributed_tracing_enabled = true
         newrelic.framework.wordpress.hooks = false
+        newrelic.framework.drupal.modules = 0
 
 newrelic_apm_install:
   cmd.run:
